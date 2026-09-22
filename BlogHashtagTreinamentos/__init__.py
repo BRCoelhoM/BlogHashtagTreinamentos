@@ -35,7 +35,7 @@ login_manager.login_message_category = 'alert-info'
 
 from BlogHashtagTreinamentos import models
 
-engine = sqlalchemy.create_engine(['SQLALCHEMY_DATABASE_URI'])
+engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sqlalchemy.inspect(engine)
 if not inspector.has_table ("usuario"):
     with app.app_context():
