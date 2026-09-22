@@ -1,13 +1,9 @@
 .card {
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-          <div class="card">
-            <!-- conteúdo do card -->
-          </div>
-        </div>
-      </div>
-    </div>
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
 .stats {
@@ -60,6 +56,6 @@
     .articles,
     .followers,
     .rating {
-        font-size: 11px; /* levemente maior para legibilidade no celular */
+        font-size: 11px;
     }
 }
