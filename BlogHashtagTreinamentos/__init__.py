@@ -37,7 +37,7 @@ from BlogHashtagTreinamentos import models
 
 engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sqlalchemy.inspect(engine)
-if not inspector.has_table ("usuario"):
+if not inspector.has_table ("Usuario"):
     with app.app_context():
         db.drop_all()
         db.create_all()
