@@ -50,15 +50,43 @@ from BlogHashtagTreinamentos import routes
 """
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 import os
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99'  # Segurança do Formulários
+
+# --- ROTA DE DEBUG TEMPORÁRIA ---
 @app.route('/debug-env')
 def debug_env():
     output = "<h1>Variáveis de Ambiente</h1><pre>"
     for key, value in sorted(os.environ.items()):
-        if "DATA" in key.upper() or "PG" in key.upper() or "POSTGRES" in key.upper() or "SECRET" not in key.upper():
+        if "SECRET" not in key.upper():
             output += f"{key} = {value}\n"
     output += "</pre>"
     return output
+# --- FIM DA ROTA DE DEBUG ---
+
+database_url = os.getenv("DATABASE_URL")
+print(f"DEBUG - DATABASE_URL lida: {database_url}")
+if database_url:
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        "mssql+pyodbc://sa:123456@localhost/api"
+        "?driver=ODBC+Driver+17+for+SQL+Server"
+        "&TrustServerCertificate=yes"
+    )
+
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'alert-info'
+
+from BlogHashtagTreinamentos import routes
