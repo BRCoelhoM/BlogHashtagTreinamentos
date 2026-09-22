@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 ## Teste
 
-app.config['UPLOAD_FOLDER'] = 'static/fotos_perfil'
+app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static/fotos_perfil')
 app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99'  # Segurança do Formulários
 
 database_url = os.getenv("DATABASE_URL")
