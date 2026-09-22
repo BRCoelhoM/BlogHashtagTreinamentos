@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,flash, abort
+from flask import render_template,request,redirect,url_for,flash, abort,current_app
 from BlogHashtagTreinamentos import app, db, bcrypt
 from BlogHashtagTreinamentos.forms import FormLogin,FormCriarConta, FormEditarPerfil, FormCriarPost
 from BlogHashtagTreinamentos.models import Usuario, Post
@@ -89,7 +89,9 @@ def salvar_imagem(imagem):
     codigo = secrets.token_hex(8)
     nome, extensao = os.path.splitext(imagem.filename)
     nome_arquivo  = nome + codigo + extensao
-    caminho_completo = os.path.join(app.root_path, 'static/fotos_perfil',nome_arquivo)
+    #caminho_completo = os.path.join(app.root_path, 'static/fotos_perfil',nome_arquivo)
+    caminho_completo = os.path.join(current_app.config['UPLOAD_FOLDER'], nome_arquivo)
+    imagem.save(caminho_completo)
 
     # Reduzir a imagem
 
