@@ -13,7 +13,7 @@
                             <div class="ms-sm-3 w-100">
                                 <h4 class="mb-0 mt-0">{{ usuario.username }}</h4> <span>{{ usuario.email }}</span>
                                 <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                                         {% if 'Não informado' in usuario.cursos %}
+                                         {% if 'Não Informado' in usuario.cursos %}
                                              <div class="d-flex flex-column"> <span class="articles">Cursos</span> <span class="number1">0</span> </div>
                                          {% else %}
                                             <div class="d-flex flex-column"> <span class="articles">Cursos</span> <span class="number1">{{ usuario.cursos.count(';') + 1 }}</span> </div>
