@@ -10,6 +10,7 @@ from sqlalchemy.future import engine
 
 app = Flask(__name__)
 
+## Teste
 
 app.config['UPLOAD_FOLDER'] = 'static/fotos_perfil'
 app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99'  # Segurança do Formulários
