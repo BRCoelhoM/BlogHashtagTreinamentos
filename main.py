@@ -1,8 +1,8 @@
+import os
 from BlogHashtagTreinamentos import app, db
 
-
 if __name__ == '__main__':
-    app.run(debug=True) # com o debug não precisa ficar tirando e depois colocando o site no ar para valer as alterações
-
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
 
 
