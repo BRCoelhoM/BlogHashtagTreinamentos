@@ -8,15 +8,19 @@ app = Flask(__name__)
 
 
 
-app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99' #Segurança do Formulários
-if os.getenv("DATABASE_URL"): ## Banco de Dados servidor Railway
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
-else: ## Banco de Dados Local, para teste
+app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99'  # Segurança do Formulários
+
+database_url = os.getenv("DATABASE_URL")
+if database_url:  ## Banco de Dados servidor Railway
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+else:  ## Banco de Dados Local, para teste
     app.config['SQLALCHEMY_DATABASE_URI'] = (
         "mssql+pyodbc://sa:123456@localhost/api"
         "?driver=ODBC+Driver+17+for+SQL+Server"
         "&TrustServerCertificate=yes"
-)
+    )
 
 db=SQLAlchemy(app)
 bcrypt = Bcrypt(app)
