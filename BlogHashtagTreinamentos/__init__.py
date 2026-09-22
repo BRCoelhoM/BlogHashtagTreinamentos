@@ -1,3 +1,4 @@
+"""
 import sqlalchemy
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -46,3 +47,18 @@ else:
 
 
 from BlogHashtagTreinamentos import routes
+"""
+
+from flask import Flask
+import os
+
+app = Flask(__name__)
+
+@app.route('/debug-env')
+def debug_env():
+    output = "<h1>Variáveis de Ambiente</h1><pre>"
+    for key, value in sorted(os.environ.items()):
+        if "DATA" in key.upper() or "PG" in key.upper() or "POSTGRES" in key.upper() or "SECRET" not in key.upper():
+            output += f"{key} = {value}\n"
+    output += "</pre>"
+    return output
