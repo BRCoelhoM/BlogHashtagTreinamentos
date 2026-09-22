@@ -2,16 +2,20 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+import os
 
 app = Flask(__name__)
 
 
 
 app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99' #Segurança do Formulários
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    "mssql+pyodbc://sa:123456@localhost/api"
-    "?driver=ODBC+Driver+17+for+SQL+Server"
-    "&TrustServerCertificate=yes"
+if os.getenv("DATABASE_URL"): ## Banco de Dados servidor Railway
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+else: ## Banco de Dados Local, para teste
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        "mssql+pyodbc://sa:123456@localhost/api"
+        "?driver=ODBC+Driver+17+for+SQL+Server"
+        "&TrustServerCertificate=yes"
 )
 
 db=SQLAlchemy(app)
