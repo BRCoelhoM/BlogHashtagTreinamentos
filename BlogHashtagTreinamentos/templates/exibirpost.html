@@ -61,3 +61,36 @@
                                             {% endfor %}
                                         </div>
                                {% else %}
+                                    {{ form.corpo (class="form-control")}}
+                               {% endif %}
+                           </div>
+                        </fieldset>
+                        {{ form.botao_submit (class = "btn btn-primary mt-3") }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="ExcluirPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-tittle fs-5" id="exampleModalLabel">Excluir Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Você quer realmente excluir este post? Esta ação não poderá ser desfeita.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
+                  <button type="submit" class="btn btn-primary btn-danger">Excluir Post</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
