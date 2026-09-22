@@ -72,16 +72,8 @@ def debug_env():
 
 database_url = os.getenv("DATABASE_URL")
 print(f"DEBUG - DATABASE_URL lida: {database_url}")
-if database_url:
-    if database_url.startswith("postgres://"):
-        database_url = database_url.replace("postgres://", "postgresql://", 1)
-    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = (
-        "mssql+pyodbc://sa:123456@localhost/api"
-        "?driver=ODBC+Driver+17+for+SQL+Server"
-        "&TrustServerCertificate=yes"
-    )
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:SUA_SENHA_AQUI@postgres.railway.internal:5432/railway"
+print("DEBUG - Usando URL hardcoded do Postgres")
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
