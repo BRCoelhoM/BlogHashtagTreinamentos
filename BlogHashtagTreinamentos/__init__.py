@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '0d979629c3fe2692cc0a11969a070d99'  # Segurança do Formulários
 
 database_url = os.getenv("DATABASE_URL")
+print(f"DEBUG - DATABASE_URL lida: {database_url}")  # linha temporária
 if database_url:  ## Banco de Dados servidor Railway
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
