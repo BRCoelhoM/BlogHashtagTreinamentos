@@ -1,49 +1,65 @@
 .card {
-    width: 400px;
-    border: none;
-    border-radius: 10px;
-    background-color: #fff
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+          <div class="card">
+            <!-- conteúdo do card -->
+          </div>
+        </div>
+      </div>
+    </div>
 }
 
 .stats {
     background: #f2f5f8 !important;
-    color: #000 !important
+    color: #000 !important;
 }
 
 .articles {
     font-size: 10px;
-    color: #a1aab9
-
-
+    color: #a1aab9;
 }
 
 .number1 {
-    font-weight: 500
+    font-weight: 500;
 }
 
 .followers {
     font-size: 10px;
-    color: #a1aab9
+    color: #a1aab9;
 }
 
 .number2 {
-    font-weight: 500
+    font-weight: 500;
 }
 
 .rating {
     font-size: 10px;
-    color: #a1aab9
+    color: #a1aab9;
 }
 
 .number3 {
-    font-weight: 500
+    font-weight: 500;
 }
 
-.meupost{
+.meupost {
     background: #f2f5f8 !important;
-
 }
 
-.linkpost{
-   "text-decoration: none " !important;
+.linkpost {
+    text-decoration: none !important;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+    .card {
+        border-radius: 6px;
+        margin: 0 auto;
+    }
+
+    .articles,
+    .followers,
+    .rating {
+        font-size: 11px; /* levemente maior para legibilidade no celular */
+    }
 }
